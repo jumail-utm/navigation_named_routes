@@ -3,10 +3,6 @@ import 'package:navigation_simple/models/assessment.dart';
 import 'package:navigation_simple/models/form.dart';
 
 class DetailsScreen extends StatefulWidget {
-  final Assessment _data;
-
-  DetailsScreen(this._data);
-
   @override
   _DetailsScreenState createState() => _DetailsScreenState();
 }
@@ -14,12 +10,14 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    final Assessment _data = ModalRoute.of(context).settings.arguments;
+
     return WillPopScope(
       onWillPop: () => Future.value(false),
       child: Scaffold(
         appBar: AppBar(
           leading: Container(),
-          title: Text(widget._data.member.shortName),
+          title: Text(_data.member.shortName),
           centerTitle: true,
         ),
         body: ListView.separated(
@@ -28,7 +26,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             title: Text(criteria[index].title),
             subtitle: Text(criteria[index].description),
             trailing: DropdownButton<int>(
-              value: widget._data.points[index],
+              value: _data.points[index],
               items: scales
                   .map(
                     (scale) => DropdownMenuItem(
@@ -38,7 +36,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   )
                   .toList(),
               onChanged: (newValue) =>
-                  setState(() => widget._data.points[index] = newValue),
+                  setState(() => _data.points[index] = newValue),
             ),
           ),
           separatorBuilder: (context, index) => Divider(
@@ -52,13 +50,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
               label: const Text('Save'),
               icon: const Icon(Icons.check_circle),
               heroTag: null,
-              onPressed: () {},
+              onPressed: () => Navigator.pop(context, _data),
             ),
             FloatingActionButton.extended(
               label: const Text('Cancel'),
               icon: const Icon(Icons.cancel),
               heroTag: null,
-              onPressed: () {},
+              onPressed: () => Navigator.pop(context, null),
             ),
           ],
         ),

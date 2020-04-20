@@ -5,12 +5,15 @@ import 'package:navigation_simple/screens/details.dart';
 
 void main() => runApp(
       MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'flutter_navigation_simple',
-        theme: ThemeData(
-          primarySwatch: Colors.pink,
-        ),
-        home: SummaryScreen(mockData[0].member, mockData),
-        // home: DetailsScreen(mockData[0]),
-      ),
+          debugShowCheckedModeBanner: false,
+          title: 'flutter_navigation_simple',
+          theme: ThemeData(
+            primarySwatch: Colors.pink,
+          ),
+          initialRoute: '/summary',
+          routes: {
+            '/summary': (context) =>
+                SummaryScreen(mockData[0].member, mockData),
+            '/details': (context) => DetailsScreen(),
+          }),
     );
