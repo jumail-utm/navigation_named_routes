@@ -10,7 +10,7 @@ void main() => runApp(
         theme: ThemeData(
           primarySwatch: Colors.pink,
         ),
-        initialRoute: '/summary',
+        // initialRoute: '/summary',
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case '/':

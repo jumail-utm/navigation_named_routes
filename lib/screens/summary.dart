@@ -15,6 +15,18 @@ class SummaryScreen extends StatefulWidget {
 }
 
 class _SummaryScreenState extends State<SummaryScreen> {
+  void _navigate(index) async {
+    final result = await Navigator.pushNamed(
+      context,
+      '/details',
+      arguments: Assessment.copy(widget._data[index]),
+    );
+
+    if (result != null) {
+      setState(() => widget._data[index] = result);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +57,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
             backgroundColor:
                 widget._data[index].percent < 50 ? Colors.red : Colors.green,
           ),
-          onTap: () {},
+          onTap: () => _navigate(index),
         ),
         separatorBuilder: (context, index) => Divider(
           color: Colors.grey,
