@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:navigation_simple/models/assessment.dart';
-
 import 'package:navigation_simple/models/group_member.dart';
-import 'details.dart';
+
+import '../constants.dart';
 
 class SummaryScreen extends StatefulWidget {
   final GroupMember _evaluator;
@@ -18,7 +18,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
   void _navigate(index) async {
     final result = await Navigator.pushNamed(
       context,
-      '/details',
+      detailsRoute,
       arguments: Assessment.copy(widget._data[index]),
     );
 
