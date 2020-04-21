@@ -10,7 +10,22 @@ void main() => runApp(
         theme: ThemeData(
           primarySwatch: Colors.pink,
         ),
-        home: SummaryScreen(mockData[0].member, mockData),
-        // home: DetailsScreen(mockData[0]),
+        initialRoute: '/summary',
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case '/':
+            case '/summary':
+              return MaterialPageRoute(
+                builder: (context) =>
+                    SummaryScreen(mockData[0].member, mockData),
+              );
+
+            case '/details':
+              return MaterialPageRoute(
+                builder: (context) => DetailsScreen(settings.arguments),
+              );
+          }
+          return null;
+        },
       ),
     );
