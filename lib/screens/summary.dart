@@ -29,6 +29,8 @@ class _SummaryScreenState extends State<SummaryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('summary build');
+
     return Scaffold(
       appBar: AppBar(
         title: Column(
